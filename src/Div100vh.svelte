@@ -13,13 +13,13 @@
 </script>
 
 <script>
-    let height = measureHeight()
+    let height
     let container
 
     const updateHeight = throttle(() => {
         height = measureHeight()
-        const realHeight = `${height ? `${height}px` : '100vh'}`
-        container.style.height = realHeight
+        // Fallback to 100vh if used during server side rendering.
+        container.style.height = `${height ? `${height}px` : '100vh'}`
     }, 16)
 
     onMount(() => {
